@@ -17,37 +17,38 @@ html = """\
 <html>
 <body>
 <center>
-<div style="border: 8px solid red; display: table;">
+<div style="display: table;">
 """
 
 column = 0
 
-cell_width = "230"
+cell_height = "400"
 
 for item in releases:
-    if column == 6:
-        column = 0
-        html += """\
+    if item.source_release_date == f"{datetime.today().date()}":
+        if column == 5:
+            column = 0
+            html += """\
+            </div>
+            <div style="display: table;">
+            """
+
+        html += f"""\
+        <div style="display: table-cell;">
+        <center>
+        <img src={item.poster_url} height={cell_height}px style="border: 3px solid black;" alt="Poster Image">
+        <p style="background-color:powderblue; border: 3px solid black;">
+        <b>{item.title}</b><br>
+        Type: {type_map(item.type)}<br>
+        Season Number: {item.season_number}<br>
+        Release Date: {item.source_release_date}<br>
+        Platform: {item.source_name}
+        </p>
+        </center>
         </div>
-        <div style="border: 8px solid red; display: table;">
+
         """
-
-    html += f"""\
-    <div style="width: 245px; display: table-cell;">
-    <center>
-    <img src={item.poster_url} width={cell_width}px style="border: 3px solid black;" alt="Poster Image">
-    <p style="width: {cell_width}px; border: 3px solid black;">
-    <b>{item.title}</b><br>
-    Type: {type_map(item.type)}<br>
-    Season Number: {item.season_number}<br>
-    Release Date: {item.source_release_date}<br>
-    Platform: {item.source_name}
-    </p>
-    </center>
-    </div>
-
-    """
-    column += 1
+        column += 1
 
 html += """\
 </div>
@@ -61,4 +62,4 @@ smtp = Smtp(os.getenv('APP_PASSWORD'), os.getenv('SENDER_EMAIL'), os.getenv('REC
 
 smtp.send_mail(f"html testing {datetime.now()}", html)
 
-# print(html)
+print(html)
