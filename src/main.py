@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from watchmode import Watchmode
 from smtp import Smtp
@@ -9,7 +9,6 @@ from utils import html_chunk
 
 
 # TODO:
-# Add a description for the item
 # Sort movies from tv shows and display them separately in email
 # Pretty up the html
 # Figure out best way to have the script run constantly to execute every day (aim for time when globally the world is "today")
@@ -34,16 +33,15 @@ cell_height = "400"
 
 
 for item in releases:
-    if item.source_release_date == f"{datetime.today().date()- timedelta(days=1)}":
-        if column == 5:
-            column = 0
-            html += """\
-            </div>
-            <div style="display: table;">
-            """
+    if column == 5:
+        column = 0
+        html += """\
+        </div>
+        <div style="display: table;">
+        """
 
-        html += html_chunk(item, cell_height)
-        column += 1
+    html += html_chunk(item, cell_height)
+    column += 1
 
 html += """\
 </div>
