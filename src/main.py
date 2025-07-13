@@ -18,12 +18,13 @@ load_dotenv()
 
 watchmode = Watchmode()
 
-releases = watchmode.request_new_releases()
+movie_releases, tv_releases = watchmode.request_new_releases()
 
 html = """\
 <html>
 <body>
 <center>
+<h1>Movies</h1>
 <div style="display: table;">
 """
 
@@ -31,8 +32,22 @@ column = 0
 
 cell_height = "400"
 
+for item in movie_releases:
+    if column == 5:
+        column = 0
+        html += """\
+        </div>
+        <div style="display: table;">
+        """
 
-for item in releases:
+    html += html_chunk(item, cell_height)
+    column += 1
+
+html += """\
+        </div>
+        <h1>TV</h1>
+        """
+for item in tv_releases:
     if column == 5:
         column = 0
         html += """\

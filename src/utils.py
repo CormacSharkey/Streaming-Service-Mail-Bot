@@ -4,7 +4,7 @@ def html_chunk(item, cell_height):
         <div style="display: table-cell;">
         <center>
         <img src={item.poster_url} height={cell_height}px style="border: 3px solid black;" alt="Poster Image">
-        <p style="width: 280px; background-color:powderblue; border: 3px solid black;">
+        <p style="width: 260px; background-color:powderblue; border: 3px solid black;">
         <b>{item.title}</b><br>
         Type: {item.type}<br>
         Release Date: {item.source_release_date}<br>
