@@ -1,73 +1,31 @@
 import os
 from dotenv import load_dotenv
-
 from datetime import datetime
 
 from watchmode import Watchmode
 from smtp import Smtp
-from utils import html_chunk
+from utils import html_body_chunk
 
 
 # TODO:
-# Sort movies from tv shows and display them separately in email
-# Pretty up the html
-# Figure out best way to have the script run constantly to execute every day (aim for time when globally the world is "today")
+# Write comments
 # Write README
 
+# Load the .env
 load_dotenv()
 
+# Create a Watchmode obj
 watchmode = Watchmode()
 
+# Get the movie and tv releases lists
 movie_releases, tv_releases = watchmode.request_new_releases()
 
-html = """\
-<html>
-<body>
-<center>
-<h1>Movies</h1>
-<div style="display: table;">
-"""
+# Get the html body from the movie and tv releases
+html = html_body_chunk(movie_releases, tv_releases, "400", 5)
 
-column = 0
+# Create an Smtp obj
+smtp = Smtp(os.getenv('APP_PASSWORD'), os.getenv(
+    'SENDER_EMAIL'), os.getenv('RECEIVER_EMAIL'))
 
-cell_height = "400"
-
-for item in movie_releases:
-    if column == 5:
-        column = 0
-        html += """\
-        </div>
-        <div style="display: table;">
-        """
-
-    html += html_chunk(item, cell_height)
-    column += 1
-
-html += """\
-        </div>
-        <h1>TV</h1>
-        """
-for item in tv_releases:
-    if column == 5:
-        column = 0
-        html += """\
-        </div>
-        <div style="display: table;">
-        """
-
-    html += html_chunk(item, cell_height)
-    column += 1
-
-html += """\
-</div>
-</div>
-</center>
-</body>
-</html>
-"""
-
-smtp = Smtp(os.getenv('APP_PASSWORD'), os.getenv('SENDER_EMAIL'), os.getenv('RECEIVER_EMAIL'))
-
+# Send the html body as an email
 smtp.send_mail(f"html testing {datetime.now()}", html)
-
-# print(html)
