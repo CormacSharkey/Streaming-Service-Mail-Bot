@@ -17,8 +17,8 @@ class Watchmode:
             data = json.loads(response.read().decode())
             return data["plot_overview"]
 
-    def __release_list_append(self, item, releases):
-        if item["source_release_date"] == f"{datetime.today().date()- timedelta(days=1)}":
+    def __release_list_append(self, item, releases, delta):
+        if item["source_release_date"] == f"{datetime.today().date()- timedelta(days=-1*delta)}":
             description = self.__request_release_description(item["id"])
 
             if item["poster_url"] == "":
@@ -29,7 +29,7 @@ class Watchmode:
                                 item["poster_url"], item["source_release_date"], item["source_name"]))
 
     # Get the new releases for the specified day
-    def request_new_releases(self):
+    def request_new_releases(self, delta):
         url = f'https://api.watchmode.com/v1/releases/?apiKey={self.api_key}'
 
         movie_releases = []
@@ -40,9 +40,9 @@ class Watchmode:
 
             for item in data["releases"]:
                 if "movie" in item["type"]:
-                    self.__release_list_append(item, movie_releases)
+                    self.__release_list_append(item, movie_releases, delta)
                 else:
-                    self.__release_list_append(item, tv_releases)
+                    self.__release_list_append(item, tv_releases, delta)
 
         return movie_releases, tv_releases
 

@@ -18,7 +18,7 @@ load_dotenv()
 watchmode = Watchmode()
 
 # Get the movie and tv releases lists
-movie_releases, tv_releases = watchmode.request_new_releases()
+movie_releases, tv_releases = watchmode.request_new_releases(-1)
 
 # Get the html body from the movie and tv releases
 html = html_body_chunk(movie_releases, tv_releases, "400", 5)
