@@ -1,11 +1,11 @@
 # Streaming-Service-Mail-Script
 
 <!-- [![Contributors][contributors-shield]][contributors-url] -->
-![GitHub contributors](https://img.shields.io/github/contributors/CormacSharkey/Simple-README-Template?style=flat)
-![GitHub forks](https://img.shields.io/github/forks/CormacSharkey/Simple-README-Template?style=flat)
-![GitHub Repo stars](https://img.shields.io/github/stars/CormacSharkey/Simple-README-Template?style=flat)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/CormacSharkey/Simple-README-Template?style=flat)
-![GitHub License](https://img.shields.io/github/license/CormacSharkey/Simple-README-Template)
+![GitHub contributors](https://img.shields.io/github/contributors/CormacSharkey/Streaming-Service-Mail-Script?style=flat)
+![GitHub forks](https://img.shields.io/github/forks/CormacSharkey/Streaming-Service-Mail-Script?style=flat)
+![GitHub Repo stars](https://img.shields.io/github/stars/CormacSharkey/Streaming-Service-Mail-Script?style=flat)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/CormacSharkey/Streaming-Service-Mail-Script?style=flat)
+![GitHub License](https://img.shields.io/github/license/CormacSharkey/Streaming-Service-Mail-Script)
 [![GitHub][github-shield]][github-url]
 [![Goodreads][goodreads-shield]][goodreads-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
