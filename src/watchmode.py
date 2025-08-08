@@ -18,7 +18,7 @@ class Watchmode:
             return data["plot_overview"]
 
     def __release_list_append(self, item, releases, delta):
-        if item["source_release_date"] == f"{datetime.today().date()- timedelta(days=-1*delta)}":
+        if item["source_release_date"] == f"{datetime.today().date()-timedelta(days=-1*delta)}":
             description = self.__request_release_description(item["id"])
 
             if item["poster_url"] == "":

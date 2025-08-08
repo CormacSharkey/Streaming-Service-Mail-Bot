@@ -1,4 +1,13 @@
+from datetime import datetime, timedelta
+
+
+def subject_line(delta):
+
+    return f"New Releases: {datetime.today()-timedelta(days=-1*delta):%A, %B %d, %Y}"
+
 # Create the html body with the movie and tv releases lists
+
+
 def html_body_chunk(movie_releases, tv_releases, cell_height, row_len):
     column = 0
 

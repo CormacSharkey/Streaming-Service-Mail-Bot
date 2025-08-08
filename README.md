@@ -61,12 +61,13 @@ git clone https://github.com/CormacSharkey/Streaming-Service-Mail-Script.git
 
 2. Create a `.env`
 
-3. Add your Watchmode API Key, your App Password, your Sender Email, and your Receiver Email
+3. Add your Watchmode API Key, your App Password, your Sender and Receiver Emails, and your Release Date Delta
 ````
 API_KEY="XXXXXXXXXXXXXXXX"
 APP_PASSWORD=XXXX XXXX XXXX XXXX
 SENDER_EMAIL=sender_email@gmail.com
 RECEIVER_EMAIL=receiver_email@gmail.com
+RELEASE_DATE_DELTA=-1
 ````
 > [!NOTE]
 > The Sender Email is the Gmail Account with your App Password.
@@ -96,11 +97,11 @@ python src/main.py
 
 - Modifying the script:
 
-The release day the script checks can be modified in `main.py` at Line 21:
-````python
-movie_releases, tv_releases = watchmode.request_new_releases(-1)
+The release day the script checks can be modified in `.env` at Line 5:
 ````
-The parameter *delta* for the `request_new_releases()` method controls the offset of days from today. E.g. *delta=0* means releases from today, *delta=1* means releases from tomorrow, etc. The default is *delta=-1*, meaning releases from yesterday.
+RELEASE_DATE_DELTA=-1
+````
+The environmental variable *RELEASE_DATE_DELTA* controls the offset of days from today. E.g. *RELEASE_DATE_DELTA=0* means releases from today, *RELEASE_DATE_DELTA=1* means releases from tomorrow, etc. The recommendation is *RELEASE_DATE_DELTA=-1*, meaning releases from yesterday.
 
 ## Contributions
 
